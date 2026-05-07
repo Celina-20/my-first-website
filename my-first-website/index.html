@@ -3,9 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Taste of Cantonese</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!--navigation-->
+  <nav class="navbar">
+        <div class="logo">
+            <img src="logo.jpg"alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+    </nav>
+  <!--Home-->
+  <section id="home" class="home-page">
+        <h1 class="home-title">Taste of Cantonese</h1>
+        <p class="home-subtitle">A legacy of authentic Cantonese flavor</p>
+        
+        <div class="food-gallery">
+            <div class="food-card">
+                <img src="food1.jpg" alt="Claypot Rice">
+            </div>
+            <div class="food-card">
+                <img src="food2.jpg" alt="Roast Duck">
+            </div>
+            <div class="food-card">
+                <img src="food3.jpg" alt="Dim Sum">
+            </div>
+            <div class="food-card">
+                <img src="food4.jpg" alt="BBQ Pork">
+            </div>
+            <div class="food-card">
+                <img src="food5.jpg" alt="Beef Noodles">
+            </div>
+        </div>
+
+        <button class="start-btn">START</button>
+    </section>
+
+  <!--Menu-->
+  <section id="menu" class="menu-page container">
+        <!-- Sidebar Filters -->
+        <div class="sidebar">
+            <div class="search-bar">
+                <input type="text" placeholder="Search">
+                <button type="submit"></button>
+            </div>
+
+            <div class="price-filter">
+                <label>PRICE</label>
+                <input type="range" min="0" max="60" value="60" class="price-slider">
+                <div class="price-range">
+                    <span>$0</span>
+                    <span>$60</span>
+                </div>
+            </div>
+
+            <div class="category-list">
+                <button>TOP SELLERS 6</button>
+                <button>ENTREE 12</button>
+                <button class="active">SOUP 7</button>
+                <button>SEAFOOD 33</button>
+                <button>CHICKEN & DUCK 22</button>
+                <button>PORK, BEEF, LAMB 35</button>
+                <button>VEGETABLES & TOFU 24</button>
+                <button>RICE & NOODLE 20</button>
+                <button>HOT POT 18</button>
+                <button>DESSERT 5</button>
+            </div>
+        </div>
+
+  <!--About Us-->
+    <section id="about" class="about-page container">
+        <h1 class="about-title">Taste of Cantonese</h1>
+        <p class="text-gray-600 mb-8">38 Railway Ave, Ringwood East Vic 3135</p>
+        
+        <div class="about-info">
+            <div class="location">
+                <h3>Location</h3>
+                <div class="map">
+                    <!-- Placeholder map -->
+                    <img src="map.jpg" alt="Map">
+                </div>
+            </div>
+            <div class="hours">
+                <h3>Open Time</h3>
+                <table class="hours-table">
+                    <thead>
+                        <tr>
+                            <th>Days</th>
+                            <th>Lunch</th>
+                            <th>Dinner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monday</td>
+                            <td>11am to 3pm</td>
+                            <td>5pm to 10pm</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td>11am to 3pm</td>
+                            <td>5pm to 10pm</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>11am to 3pm</td>
+                            <td>5pm to 10pm</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday</td>
+                            <td>11am to 3pm</td>
+                            <td>5pm to 10pm</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td>11am to 3pm</td>
+                            <td>5pm to 10:30pm</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                            <td>11am to 3pm</td>
+                            <td>5pm to 10:30pm</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday</td>
+                            <td>11am to 3pm</td>
+                            <td>5pm to 10:30pm</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
     
 </body>
 </html>
