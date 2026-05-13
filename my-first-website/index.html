@@ -236,6 +236,36 @@
                 </div>
             </div>
 
+  <!-- Shopping Cart -->
+            <div class="sidebar-box">
+                <h3>Shopping Cart</h3>
+                <div class="cart-header">
+                    <button class="cart-tab active">Delivery</button>
+                    <button class="cart-tab">Pick Up</button>
+                </div>
+                <div class="cart-items">
+                    <div class="cart-item">
+                        <img src="food6" alt="Special Fried Rice">
+                        <div class="cart-item-details">
+                            <p class="cart-item-name">Special Fried Rice</p>
+                            <p class="cart-item-price">$18.00</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="qty-btn">-</button>
+                            <span>1</span>
+                            <button class="qty-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-total">
+                    <span class="total-label">Order Total:</span>
+                    <span class="total-amount">$18</span>
+                </div>
+                <button class="order-btn" onclick="openPaymentModal()">Order</button>
+            </div>
+        </div>
+    </section>
+
   <!--About Us-->
   <section id="about" class="about-page container">
         <h1 class="about-title">Taste of Cantonese</h1>
@@ -300,8 +330,29 @@
             </div>
         </div>
     </section>
-
+    
   <!--Contact Us--> 
+  <section id="contact" class="contact-page container">
+        <div class="chat-container">
+            <div class="chat-messages">
+                <div class="message bot">
+                    <p>Hello! How can I help you today?</p>
+                </div>
+                <div class="message user">
+                    <p>I'd like to make a reservation for 4 people tonight.</p>
+                </div>
+            </div>
+            <div class="message-input">
+                <input type="text" placeholder="Type a message...">
+                <div class="chat-actions">
+                    <button>😊</button>
+                    <button>📷</button>
+                    <button>🖼️</button>
+                    <button>📞</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <script>
 
