@@ -383,7 +383,75 @@
             </div>
         </div>
     </div>
-    
+
+<!-- Payment Modal -->
+    <div id="paymentModal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <h3 class="modal-title">Payment Methods</h3>
+            <p class="text-gray-600 mb-4">Please make the payment within 15 minutes</p>
+            <p class="mb-4">Please select a payment method</p>
+            <div class="payment-options">
+                <button class="payment-option">Credit Card</button>
+                <button class="payment-option">ApplePay</button>
+                <button class="payment-option">Alipay</button>
+            </div>
+            <button class="confirm-btn">Confirm</button>
+        </div>
+    </div>
+
+    <!-- Payment Detail Modal -->
+    <div id="paymentDetailModal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <h3 class="modal-title">Payment Detail</h3>
+            <form class="payment-form">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="First Name" value="Celina">
+                    <input type="text" placeholder="Surname" value="Huang">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="04xxxxxxxx" value="0421451846">
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" placeholder="Street, Suburb, State, Postcode" value="85 Barry Street, Carlton, VIC, 3053">
+                </div>
+                <div class="form-group">
+                    <label>Credit Card Number</label>
+                    <input type="text" placeholder="xxxx xxxx xxxx xxxx" value="4521 5789 1456">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="text" placeholder="xxx" value="541">
+                    </div>
+                    <div class="form-group">
+                        <label>Expiry</label>
+                        <input type="text" placeholder="xx/xx" value="20/30">
+                    </div>
+                </div>
+                <button type="submit" class="confirm-btn">Pay Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal success-modal">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                </svg>
+            </div>
+            <h3 class="success-title">Payment Success!</h3>
+            <p class="success-message">Thank you for your purchase.<br>Your order has been confirmed.</p>
+            <button class="back-btn">Back Homepage</button>
+        </div>
+    </div>
+
 <script>
 
   </script>
