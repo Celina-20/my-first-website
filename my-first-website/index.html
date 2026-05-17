@@ -452,7 +452,78 @@
     </div>
 
 <script>
+// Pop-up window control
+function openModal(name, price, img, tag, rating, reviews) {
+    document.querySelector('.modal-title').innerText = `${name} ${price}`;
+    document.querySelector('.modal-image').src = img;
+    document.getElementById('foodModal').style.display = 'flex';
+}
 
+function openPaymentModal() {
+    document.getElementById('paymentModal').style.display = 'flex';
+}
+
+// Close the pop-up window
+document.querySelectorAll('.modal-close').forEach(btn => {
+    btn.onclick = function () {
+        document.querySelectorAll('.modal-overlay').forEach(m => {
+            m.style.display = 'none';
+        });
+    };
+});
+
+// Payment options
+document.querySelectorAll('.payment-option').forEach(option => {
+    option.onclick = function () {
+        document.getElementById('paymentDetailModal').style.display = 'flex';
+    };
+});
+
+// Payment success
+document.querySelector('.confirm-btn[type="submit"]').onclick = e => {
+    e.preventDefault();
+    document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none');
+    document.getElementById('successModal').style.display = 'flex';
+};
+
+// Back homepage
+document.querySelector('.back-btn').onclick = () => {
+    window.location.hash = 'home';
+    document.getElementById('successModal').style.display = 'none';
+};
+
+// Shopping cart quantity control
+let qty = 1;
+const qtyElements = document.querySelectorAll('.qty-control span, .cart-item-quantity span');
+const minusBtns = document.querySelectorAll('.qty-btn:first-child');
+const plusBtns = document.querySelectorAll('.qty-btn:last-child');
+
+minusBtns.forEach(btn => {
+    btn.onclick = () => {
+        if (qty > 1) {
+            qty--;
+            qtyElements.forEach(el => el.innerText = qty);
+        }
+    };
+});
+
+plusBtns.forEach(btn => {
+    btn.onclick = () => {
+        qty++;
+        qtyElements.forEach(el => el.innerText = qty);
+    };
+});
+
+// All pop-ups are hidden by default
+document.querySelectorAll('.modal-overlay').forEach(m => {
+    m.style.display = 'none';
+    m.style.justifyContent = 'center';
+    m.style.alignItems = 'center';
+    m.style.position = 'fixed';
+    m.style.inset = '0';
+    m.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    m.style.zIndex = '999';
+});
   </script>
 </body>
 </html>
