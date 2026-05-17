@@ -131,3 +131,78 @@ body {
 .start-btn:hover {
     background-color: #8B2E27;
 }
+
+/* Menu Page Layout */
+.menu-page {
+    display: grid;
+    grid-template-columns: 200px 1fr 320px;
+    gap: 2rem;
+}
+
+/* Sidebar Filters */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.5rem;
+    background-color: white;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 0.25rem;
+    font-size: 1rem;
+}
+
+.price-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.price-filter label {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.price-slider {
+    width: 100%;
+}
+
+.price-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.category-list button {
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.category-list button:hover, .category-list button.active {
+    background-color: var(--border-color);
+    color: var(--primary);
+}
