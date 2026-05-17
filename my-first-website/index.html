@@ -67,23 +67,138 @@
             </div>
 
             <div class="category-list">
-                <button>TOP SELLERS 6</button>
-                <button>ENTREE 12</button>
-                <button class="active">SOUP 7</button>
-                <button>SEAFOOD 33</button>
-                <button>CHICKEN & DUCK 22</button>
-                <button>PORK, BEEF, LAMB 35</button>
-                <button>VEGETABLES & TOFU 24</button>
-                <button>RICE & NOODLE 20</button>
-                <button>HOT POT 18</button>
-                <button>DESSERT 5</button>
+                <button data-category="topsellers">TOP SELLERS 6</button>
+                <button data-category="entree">ENTREE 12</button>
+                <button class="active" data-category="soup">SOUP 7</button>
+                <button data-category="seafood">SEAFOOD 33</button>
+                <button data-category="chicken">CHICKEN & DUCK 22</button>
+                <button data-category="meat">PORK, BEEF, LAMB 35</button>
+                <button data-category="vege">VEGETABLES & TOFU 24</button>
+                <button data-category="rice">RICE & NOODLE 20</button>
+                <button data-category="hotpot">HOT POT 18</button>
+                <button data-category="dessert">DESSERT 5</button>
             </div>
         </div>
 
   <!--Menu Grid-->
   <div class="menu-grid">
+    <!--Top Sellers-->
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Special Fried Rice', '$18.00', 'menucard1.jpg', 'Popular', 4.9, '12 reviews')">
+        <img src="menucard1.jpg" alt="Special Fried Rice">
+        <div class="card-content">
+            <h3 class="card-title">Special Fried Rice</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.9</span>
+                    <span>☆</span>
+                    <span>12 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$18.00</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Homemade Dim Sims(3 Pcs)', '$18.00', 'menucard2.jpg', 'Popular', 4.9, '12 reviews')">
+        <img src="menucard2.jpg" alt="Homemade Dim Sims">
+        <div class="card-content">
+            <h3 class="card-title">Homemade Dim Sims(3 Pcs)</h3>
+            <div class="card-tags">
+                <span class="tag">Low Fat</span>
+                <div class="rating">
+                    <span>4.7</span>
+                    <span>☆</span>
+                    <span>16 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$9.80</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Honey or Lemon Chicken', '$31.60', 'menucard3.jpg', 'Popular', 4.9, '8 reviews')">
+        <img src="menucard3.jpg" alt="Honey or Lemon Chicken">
+        <div class="card-content">
+            <h3 class="card-title">Honey or Lemon Chicken</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.9</span>
+                    <span>☆</span>
+                    <span>8 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$31.60</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Vegetarian Spring Rolls(2Pcs)', '$8.70', 'menucard4.jpg', 'Seasonal', 4.6, '15 reviews')">
+        <img src="menucard4.jpg" alt="Vegetarian Spring Rolls">
+        <div class="card-content">
+            <h3 class="card-title">Vegetarian Spring Rolls(2Pcs)</h3>
+            <div class="card-tags">
+                <span class="tag">Seasonal</span>
+                <div class="rating">
+                    <span>4.6</span>
+                    <span>☆</span>
+                    <span>15 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$8.70</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Sizzling Mongolian Beef', '$31.60', 'menucard5.jpg', 'Popular', 4.8, '10 reviews')">
+        <img src="menucard5.jpg" alt="Sizzling Mongolian Beef">
+        <div class="card-content">
+            <h3 class="card-title">Sizzling Mongolian Beef</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.8</span>
+                    <span>☆</span>
+                    <span>10 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$31.60</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Singapore Fried Noodle', '$18.50', 'menucard6.jpg', 'Popular', 4.5, '12 reviews')">
+        <img src="menucard6.jpg" alt="Singapore Fried Noodle">
+        <div class="card-content">
+            <h3 class="card-title">Singapore Fried Noodle</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.5</span>
+                    <span>☆</span>
+                    <span>12 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$18.50</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
             <!-- Soup Items -->
-            <div class="menu-card" onclick="openModal('Szechuan Hot & Sour Soup', '$9.80', 'menucard1.jpg', 'Low Fat', 4.5, '7 reviews')">
+            <div class="menu-card" data-category="soup" onclick="openModal('Szechuan Hot & Sour Soup', '$9.80', 'menucard7.jpg', 'Low Fat', 4.5, '7 reviews')">
                 <img src="menucard7.jpg" alt="Szechuan Hot & Sour Soup">
                 <div class="card-content">
                     <h3 class="card-title">Szechuan Hot & Sour Soup</h3>
@@ -102,7 +217,7 @@
                 </div>
             </div>
 
-            <div class="menu-card">
+            <div class="menu-card" data-category="soup" onclick="openModal('Chicken Sweet Corn Soup', '$8.70', 'menucard8.jpg', 'Low Fat', 4.9, '18 reviews')">
                 <img src="menucard8.jpg" alt="Chicken Sweet Corn Soup">
                 <div class="card-content">
                     <h3 class="card-title">Chicken Sweet Corn Soup</h3>
@@ -111,7 +226,7 @@
                         <div class="rating">
                             <span>4.9</span>
                             <span>☆</span>
-                            <span>10 reviews</span>
+                            <span>18 reviews</span>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -121,7 +236,7 @@
                 </div>
             </div>
 
-            <div class="menu-card">
+            <div class="menu-card" data-category="soup" onclick="openModal('Chinese Mushroom & Veg Soup', '$8.70', 'menucard9.jpg', 'Seasonal', 4.9, '8 reviews')">
                 <img src="menucard9.jpg" alt="Chinese Mushroom & Veg Soup">
                 <div class="card-content">
                     <h3 class="card-title">Chinese Mushroom & Veg Soup</h3>
@@ -140,7 +255,7 @@
                 </div>
             </div>
 
-            <div class="menu-card">
+            <div class="menu-card" data-category="soup" onclick="openModal('Shredded Duck Soup', '$9.80', 'menucard10.jpg', 'Popular', 4.6, '15 reviews')">
                 <img src="menucard10.jpg" alt="Shredded Duck Soup">
                 <div class="card-content">
                     <h3 class="card-title">Shredded Duck Soup</h3>
@@ -159,7 +274,7 @@
                 </div>
             </div>
 
-            <div class="menu-card">
+            <div class="menu-card" data-category="soup" onclick="openModal('Seafood Beancurd Soup', '$10.90', 'menucard11.jpg', 'Popular', 4.8, '8 reviews')">
                 <img src="menucard11.jpg" alt="Seafood Beancurd Soup">
                 <div class="card-content">
                     <h3 class="card-title">Seafood Beancurd Soup</h3>
@@ -178,7 +293,7 @@
                 </div>
             </div>
 
-            <div class="menu-card">
+            <div class="menu-card" data-category="soup" onclick="openModal('Crab Meat & Shark Fin Soup', '$10.90', 'menucard12.jpg', 'Popular', 4.7, '16 reviews')">
                 <img src="menucard12.jpg" alt="Crab Meat & Shark Fin Soup">
                 <div class="card-content">
                     <h3 class="card-title">Crab Meat & Shark Fin Soup</h3>
@@ -526,6 +641,29 @@ document.querySelectorAll('.modal-overlay').forEach(m => {
     m.style.inset = '0';
     m.style.backgroundColor = 'rgba(0,0,0,0.5)';
     m.style.zIndex = '999';
+});
+
+// Classification and filtering function on the left
+const categoryBtns = document.querySelectorAll('.category-list button');
+const menuCards = document.querySelectorAll('.menu-card');
+
+categoryBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Switch highlights
+    categoryBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cat = btn.getAttribute('data-category');
+
+    menuCards.forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      if (cat === 'all' || cardCat === cat) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
 });
   </script>
 </body>
