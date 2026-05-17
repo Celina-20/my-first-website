@@ -364,9 +364,9 @@ body {
 
 .package-item {
     border: 1px solid #e0d4c5;
-  border-radius: 12px;
-  padding: 18px;
-  margin: 10px 0;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -517,7 +517,7 @@ body {
 }
 
 .about-title {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
 }
 
@@ -534,6 +534,7 @@ body {
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
 }
 
 .location h3 {
@@ -547,13 +548,33 @@ body {
 
 .map {
     width: 100%;
-    height: 250px;
+    height: 330px; 
     background-color: #E8E8E8;
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.map img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.address-link {
+  color: inherit;
+  text-decoration: none; 
+  cursor: pointer;
+}
+
+.address-link:hover {
+  text-decoration: underline; 
 }
 
 .hours {
+    text-align: center;
     background-color: white;
     border-radius: 12px;
     padding: 1.5rem;
