@@ -63,3 +63,71 @@ body {
     padding: 0.5rem 1.25rem;
     border-radius: 8px;
 }
+
+/* Page Layout */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+}
+
+/* Home Page */
+.home-page {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.home-title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.home-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+}
+
+.food-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+.food-item {
+    transform: rotate(-5deg);
+    transition: transform 0.3s ease;
+}
+
+.food-item:nth-child(2) { transform: rotate(-2deg); }
+.food-item:nth-child(3) { transform: rotate(0deg); }
+.food-item:nth-child(4) { transform: rotate(2deg); }
+.food-item:nth-child(5) { transform: rotate(5deg); }
+
+.food-item:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.food-item img {
+    height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.start-btn {
+    background-color: var(--primary-dark);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.start-btn:hover {
+    background-color: #8B2E27;
+}
