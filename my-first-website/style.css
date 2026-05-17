@@ -505,3 +505,69 @@ body {
 .order-btn:hover {
     background-color: #8B2E27;
 }
+
+/* About Us Page */
+.about-page {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.location {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.location h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.location p {
+    margin-bottom: 1rem;
+}
+
+.map {
+    width: 100%;
+    height: 250px;
+    background-color: #E8E8E8;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.hours {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.hours h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.hours-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.hours-table th, .hours-table td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
