@@ -26,7 +26,11 @@
   <section id="home" class="home-page">
         <h1 class="home-title">Taste of Cantonese</h1>
         <p class="home-subtitle">A legacy of authentic Cantonese flavor</p>
-        
+       
+        <div class="food-gallery-wrapper">
+            <button class="carousel-arrow arrow-left">❮</button>
+            <button class="carousel-arrow arrow-right">❯</button>
+
         <div class="food-gallery">
             <div class="food-card">
                 <img src="food1.jpg" alt="Claypot Rice">
@@ -43,9 +47,10 @@
             <div class="food-card">
                 <img src="food5.jpg" alt="Beef Noodles">
             </div>
+          </div> 
         </div>
 
-        <button class="start-btn">START</button>
+        <a href="#menu" class="start-btn">START</a >
     </section>
 
   <!--Menu-->
@@ -67,9 +72,9 @@
             </div>
 
             <div class="category-list">
-                <button data-category="topsellers">TOP SELLERS 6</button>
+                <button class="active" data-category="topsellers">TOP SELLERS 6</button>
                 <button data-category="entree">ENTREE 12</button>
-                <button class="active" data-category="soup">SOUP 7</button>
+                <button data-category="soup">SOUP 7</button>
                 <button data-category="seafood">SEAFOOD 33</button>
                 <button data-category="chicken">CHICKEN & DUCK 22</button>
                 <button data-category="meat">PORK, BEEF, LAMB 35</button>
@@ -570,6 +575,28 @@
     </div>
 
 <script>
+const leftBtn = document.querySelector('.arrow-left');
+const rightBtn = document.querySelector('.arrow-right');
+const gallery = document.querySelector('.food-gallery');
+let cards = Array.from(document.querySelectorAll('.food-card'));
+
+rightBtn.addEventListener('click', () => {
+  cards.push(cards.shift());
+  renderCards();
+});
+
+leftBtn.addEventListener('click', () => {
+  cards.unshift(cards.pop());
+  renderCards();
+});
+
+function renderCards() {
+  gallery.innerHTML = '';
+  cards.forEach(card => {
+    gallery.appendChild(card);
+  });
+}
+
 // Pop-up window control
 function openModal(name, price, img, tag, rating, reviews) {
     document.querySelector('.modal-title').innerText = `${name} ${price}`;
