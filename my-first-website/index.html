@@ -58,7 +58,8 @@
         <!-- Sidebar Filters -->
         <div class="sidebar">
             <div class="search-bar">
-                <input type="text" placeholder="Search">
+                <span style="padding:0 6px; color:#777;">🔍</span>
+                <input type="text" placeholder="Search" id="searchInput">
                 <button type="submit"></button>
             </div>
 
@@ -827,6 +828,77 @@ priceSlider.addEventListener('input', () => {
       card.style.display = 'none';
     }
   });
+});
+
+// ======================
+// 搜索框实时联想 + 过滤菜单
+// ======================
+const searchInput = document.getElementById('searchInput');
+const searchBar = document.querySelector('.search-bar');
+
+// 创建联想框
+const suggestBox = document.createElement('div');
+suggestBox.className = 'suggestion-box';
+searchBar.appendChild(suggestBox);
+
+// 获取所有菜名
+const dishNames = [];
+document.querySelectorAll('.card-title').forEach(el => {
+    dishNames.push(el.innerText.trim());
+});
+
+// 输入实时搜索
+searchInput.addEventListener('input', function () {
+    const key = this.value.trim().toLowerCase();
+    suggestBox.innerHTML = '';
+
+    if (!key) {
+        suggestBox.style.display = 'none';
+        document.querySelectorAll('.menu-card').forEach(c => c.style.display = 'block');
+        return;
+    }
+
+    // 匹配推荐
+    const matches = dishNames.filter(name => 
+        name.toLowerCase().includes(key)
+    );
+
+    // 显示联想词
+    if (matches.length > 0) {
+        suggestBox.style.display = 'block';
+        matches.forEach(word => {
+            const div = document.createElement('div');
+            div.className = 'suggest-item';
+            div.innerText = word;
+            div.onclick = () => {
+                searchInput.value = word;
+                suggestBox.style.display = 'none';
+                doSearch(word);
+            };
+            suggestBox.appendChild(div);
+        });
+    } else {
+        suggestBox.style.display = 'none';
+    }
+
+    // 过滤菜单
+    doSearch(key);
+});
+
+// 搜索函数
+function doSearch(keyword) {
+    const key = keyword.toLowerCase();
+    document.querySelectorAll('.menu-card').forEach(card => {
+        const name = card.querySelector('.card-title').innerText.toLowerCase();
+        card.style.display = name.includes(key) ? 'block' : 'none';
+    });
+}
+
+// 点击别处关闭联想
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-bar')) {
+        suggestBox.style.display = 'none';
+    }
 });
 
 window.onload = renderCart;
