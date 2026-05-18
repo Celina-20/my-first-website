@@ -37,6 +37,10 @@ body {
   margin-right: auto;
 }
 
+section{
+    scroll-margin-top: 90px;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;

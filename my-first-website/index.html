@@ -785,6 +785,15 @@ categoryBtns.forEach(btn => {
   });
 });
 
+// Delivery / Pick Up switching
+const cartTabs = document.querySelectorAll('.cart-tab');
+cartTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    cartTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
 window.onload = renderCart;
   </script>
 </body>
