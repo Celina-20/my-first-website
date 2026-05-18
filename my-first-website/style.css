@@ -268,6 +268,13 @@ section{
     color: var(--text-light);
 }
 
+.current-price {
+  text-align: center;
+  margin: 5px 0;
+  font-weight: 600;
+  color: #992828;
+}
+
 .category-list {
     display: flex;
     flex-direction: column;

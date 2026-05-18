@@ -65,10 +65,7 @@
             <div class="price-filter">
                 <label>PRICE</label>
                 <input type="range" min="0" max="60" value="60" class="price-slider">
-                <div class="price-range">
-                    <span>$0</span>
-                    <span>$60</span>
-                </div>
+                <div class="current-price">Max Price: $<span id="priceValue">60</span></div>
             </div>
 
             <div class="category-list">
@@ -669,8 +666,11 @@ function renderCart() {
 
 // Quantity±
 window.changeQty = function (index, num) {
-    if (cart[index].qty + num < 1) return;
-    cart[index].qty += num;
+    if (cart[index].qty + num < 1) {
+        cart.splice(index, 1);
+    } else {
+        cart[index].qty += num;
+    }
     renderCart();
 };
 
@@ -806,6 +806,27 @@ document.querySelectorAll('.recommendation-item .add-btn, .package-item .add-btn
 
         openModal(name, price, img, '', '', '');
     });
+});
+
+// Price slider interaction
+const priceSlider = document.querySelector('.price-slider');
+const priceDisplay = document.getElementById('priceValue');
+const allMenuCards = document.querySelectorAll('.menu-card');
+
+priceSlider.addEventListener('input', () => {
+  let maxPrice = parseInt(priceSlider.value);
+  priceDisplay.innerText = maxPrice;
+
+  allMenuCards.forEach(card => {
+    let priceText = card.querySelector('.price').innerText;
+    let itemPrice = parseFloat(priceText.replace('$',''));
+
+    if(itemPrice <= maxPrice){
+      card.style.display = 'block';
+    }else{
+      card.style.display = 'none';
+    }
+  });
 });
 
 window.onload = renderCart;
