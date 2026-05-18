@@ -329,7 +329,8 @@
                 </div>
                 <div class="ai-recommendations">
                     <p class="text-sm text-gray-600 mb-3">Recommended:</p>
-                    <div class="recommendation-item">
+
+                    <div class="recommendation-item" data-name="Chinese Mushroom & Veg Soup" data-price="$8.70" data-img="menucard3.jpg">
                         <img src="menucard3.jpg" alt="Chinese Mushroom & Veg Soup">
                         <div class="ai-item-text">
                             <p class="ai-item-title">Chinese Mushroom & Veg Soup</p>
@@ -338,7 +339,7 @@
                         </div>
                         <button class="add-btn">+</button>
                     </div>
-                    <div class="recommendation-item">
+                    <div class="recommendation-item" data-name="Shredded Duck Soup" data-price="$9.80" data-img="menucard4.jpg">
                         <img src="menucard4.jpg" alt="Shredded Duck Soup">
                         <div class="ai-item-text">
                             <p class="ai-item-title">Shredded Duck Soup</p>
@@ -348,7 +349,7 @@
                         <button class="add-btn">+</button>
                     </div>
                 </div>
-                <div class="package-item">
+                <div class="package-item" data-name="Single-person Package" data-price="$28.80" data-img="single-person package.jpg">
                     <img src="single-person package.jpg" alt="Single-person Package">
                     <div class="package-details">
                         <p class="package-title">Single-person Package</p>
@@ -666,14 +667,13 @@ function renderCart() {
     calcTotal();
 }
 
-// 数量±
+// Quantity±
 window.changeQty = function (index, num) {
     if (cart[index].qty + num < 1) return;
     cart[index].qty += num;
     renderCart();
 };
 
-// ====================== 弹窗数量 ± 功能 ======================
 const modalQtyText = document.querySelector('.qty-control span');
 const modalMinus = document.querySelector('.qty-control .qty-btn:first-child');
 const modalPlus = document.querySelector('.qty-control .qty-btn:last-child');
@@ -692,7 +692,7 @@ modalPlus.onclick = () => {
   modalQtyText.innerText = modalQty;
 };
 
-// 算总价
+// Calculate
 function calcTotal() {
     let total = 0;
     cart.forEach(item => {
@@ -710,7 +710,6 @@ function openPaymentModal() {
     document.getElementById('paymentModal').style.display = 'flex';
 }
 
-// 下单按钮判断
 document.getElementById('orderBtn').addEventListener('click', () => {
     if (cart.length === 0) {
         alert('Your cart is empty!');
@@ -718,6 +717,7 @@ document.getElementById('orderBtn').addEventListener('click', () => {
     }
     openPaymentModal();
 });
+
 
 // Close the pop-up window
 document.querySelectorAll('.modal-close').forEach(btn => {
@@ -792,6 +792,20 @@ cartTabs.forEach(tab => {
     cartTabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
   });
+});
+
+// AI recommends opening a pop-up window (exactly the same as the main menu)
+document.querySelectorAll('.recommendation-item .add-btn, .package-item .add-btn').forEach(btn => {
+    btn.addEventListener('click', function(e){
+        e.stopPropagation();
+
+        const item = btn.closest('.recommendation-item') || btn.closest('.package-item');
+        const name = item.dataset.name;
+        const price = item.dataset.price;
+        const img = item.dataset.img;
+
+        openModal(name, price, img, '', '', '');
+    });
 });
 
 window.onload = renderCart;
