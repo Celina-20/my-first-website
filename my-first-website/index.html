@@ -331,19 +331,19 @@
                     <p class="text-sm text-gray-600 mb-3">Recommended:</p>
                     <div class="recommendation-item">
                         <img src="menucard3.jpg" alt="Chinese Mushroom & Veg Soup">
-                        <div>
-                            <p class="text-sm font-medium">Chinese Mushroom & Veg Soup</p>
-                            <p class="text-xs text-gray-500">Seasonal 4.9 ☆ 8 reviews</p>
-                            <p class="text-sm font-semibold">$8.70</p>
+                        <div class="ai-item-text">
+                            <p class="ai-item-title">Chinese Mushroom & Veg Soup</p>
+                            <p class="ai-item-desc">Seasonal 4.9 ☆ 8 reviews</p>
+                            <p class="ai-item-price">$8.70</p>
                         </div>
                         <button class="add-btn">+</button>
                     </div>
                     <div class="recommendation-item">
                         <img src="menucard4.jpg" alt="Shredded Duck Soup">
-                        <div>
-                            <p class="text-sm font-medium">Shredded Duck Soup</p>
-                            <p class="text-xs text-gray-500">Popular 4.6 ☆ 15 reviews</p>
-                            <p class="text-sm font-semibold">$9.80</p>
+                        <div class="ai-item-text">
+                            <p class="ai-item-title">Shredded Duck Soup</p>
+                            <p class="ai-item-desc">Popular 4.6 ☆ 15 reviews</p>
+                            <p class="ai-item-price">$9.80</p>
                         </div>
                         <button class="add-btn">+</button>
                     </div>
@@ -366,25 +366,12 @@
                     <button class="cart-tab active">Delivery</button>
                     <button class="cart-tab">Pick Up</button>
                 </div>
-                <div class="cart-items">
-                    <div class="cart-item">
-                        <img src="food6.jpg" alt="Special Fried Rice">
-                        <div class="cart-item-details">
-                            <p class="cart-item-name">Special Fried Rice</p>
-                            <p class="cart-item-price">$18.00</p>
-                        </div>
-                        <div class="cart-item-quantity">
-                            <button class="qty-btn">-</button>
-                            <span>1</span>
-                            <button class="qty-btn">+</button>
-                        </div>
-                    </div>
-                </div>
+                <div class="cart-items" id="cartItems"></div>
                 <div class="cart-total">
                     <span class="total-label">Order Total:</span>
-                    <span class="total-amount">$18</span>
+                    <span class="total-amount">$0</span>
                 </div>
-                <button class="order-btn" onclick="openPaymentModal()">Order</button>
+                <button class="order-btn" id="orderBtn">Order</button>
             </div>
         </div>
     </section>
@@ -597,16 +584,140 @@ function renderCards() {
   });
 }
 
+let cart = [];
+
 // Pop-up window control
 function openModal(name, price, img, tag, rating, reviews) {
+    modalQty = 1;
+    window.currentFood = { name, price, img };
     document.querySelector('.modal-title').innerText = `${name} ${price}`;
     document.querySelector('.modal-image').src = img;
     document.getElementById('foodModal').style.display = 'flex';
 }
 
+document.querySelector('.modal-add-btn').onclick = () => {
+    if (!window.currentFood) return;
+
+    const foodWithQty = {
+        ...window.currentFood,
+        qty: modalQty
+    };
+
+    addToCart(foodWithQty);
+
+    modalQty = 1;
+    modalQtyText.innerText = 1;
+
+    document.getElementById('foodModal').style.display = 'none';
+};
+
+function addToCart(food) {
+    const exist = cart.find(item => item.name === food.name);
+    if (exist) {
+        exist.qty += food.qty;
+    } else {
+        cart.push({ ...food });
+    }
+    renderCart();
+}
+
+document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        const card = btn.closest('.menu-card');
+        const name = card.querySelector('.card-title').innerText;
+        const price = card.querySelector('.price').innerText;
+        const img = card.querySelector('img').getAttribute('src');
+        const tag = card.querySelector('.tag').innerText;
+        const rating = card.querySelector('.rating span').innerText;
+        const reviews = card.querySelectorAll('.rating span')[2].innerText;
+
+        openModal(name, price, img, tag, rating, reviews);
+    });
+});
+
+function renderCart() {
+    const box = document.getElementById('cartItems');
+    box.innerHTML = '';
+
+    if (cart.length === 0) {
+        box.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+        document.querySelector('.total-amount').innerText = '$0';
+        return;
+    }
+
+    cart.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+            <img src="${item.img}" alt="${item.name}">
+            <div class="cart-item-details">
+                <p class="cart-item-name">${item.name}</p >
+                <p class="cart-item-price">${item.price}</p >
+            </div>
+            <div class="cart-item-quantity">
+                <button class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
+                <span>${item.qty}</span>
+                <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+            </div>
+        `;
+        box.appendChild(div);
+    });
+    calcTotal();
+}
+
+// 数量±
+window.changeQty = function (index, num) {
+    if (cart[index].qty + num < 1) return;
+    cart[index].qty += num;
+    renderCart();
+};
+
+// ====================== 弹窗数量 ± 功能 ======================
+const modalQtyText = document.querySelector('.qty-control span');
+const modalMinus = document.querySelector('.qty-control .qty-btn:first-child');
+const modalPlus = document.querySelector('.qty-control .qty-btn:last-child');
+
+let modalQty = 1;
+
+modalMinus.onclick = () => {
+  if (modalQty > 1) {
+    modalQty--;
+    modalQtyText.innerText = modalQty;
+  }
+};
+
+modalPlus.onclick = () => {
+  modalQty++;
+  modalQtyText.innerText = modalQty;
+};
+
+// 算总价
+function calcTotal() {
+    let total = 0;
+    cart.forEach(item => {
+        const price = parseFloat(item.price.replace('$', ''));
+        total += price * item.qty;
+    });
+    document.querySelector('.total-amount').innerText = `$${total.toFixed(2)}`;
+}
+
 function openPaymentModal() {
+    if (cart.length === 0) {
+        alert('Cart is empty!');
+        return;
+    }
     document.getElementById('paymentModal').style.display = 'flex';
 }
+
+// 下单按钮判断
+document.getElementById('orderBtn').addEventListener('click', () => {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    openPaymentModal();
+});
 
 // Close the pop-up window
 document.querySelectorAll('.modal-close').forEach(btn => {
@@ -627,6 +738,8 @@ document.querySelectorAll('.payment-option').forEach(option => {
 // Payment success
 document.querySelector('.confirm-btn[type="submit"]').onclick = e => {
     e.preventDefault();
+    cart = [];
+    renderCart();
     document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none');
     document.getElementById('successModal').style.display = 'flex';
 };
@@ -637,27 +750,6 @@ document.querySelector('.back-btn').onclick = () => {
     document.getElementById('successModal').style.display = 'none';
 };
 
-// Shopping cart quantity control
-let qty = 1;
-const qtyElements = document.querySelectorAll('.qty-control span, .cart-item-quantity span');
-const minusBtns = document.querySelectorAll('.qty-btn:first-child');
-const plusBtns = document.querySelectorAll('.qty-btn:last-child');
-
-minusBtns.forEach(btn => {
-    btn.onclick = () => {
-        if (qty > 1) {
-            qty--;
-            qtyElements.forEach(el => el.innerText = qty);
-        }
-    };
-});
-
-plusBtns.forEach(btn => {
-    btn.onclick = () => {
-        qty++;
-        qtyElements.forEach(el => el.innerText = qty);
-    };
-});
 
 // All pop-ups are hidden by default
 document.querySelectorAll('.modal-overlay').forEach(m => {
@@ -692,6 +784,8 @@ categoryBtns.forEach(btn => {
     });
   });
 });
+
+window.onload = renderCart;
   </script>
 </body>
 </html>
