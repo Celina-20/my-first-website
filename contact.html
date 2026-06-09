@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Taste of Cantonese</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--navigation-->
+  <nav class="navbar">
+        <div class="logo">
+            <img src="logo.jpg"alt="Logo">
+        </div>
+        <div class="current-page-name">Contact Us</div>
+        <div class="header-title">
+            <h2>Taste of Cantonese</h2>
+        </div>
+        <button class="hamburger-btn">☰</button>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html"class='active'>Contact Us</a>
+        </div>
+    </nav>
+
+<!--Contact Us--> 
+  <section id="contact" class="contact-page container">
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="chat-avatar">
+                        <img src="logo.jpg" alt="Bot">
+                    </div>
+                    <div class="chat-bubble">
+                        <p>Hello! How can I help you today?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="message-input">
+                <input type="text" id="chatInput" placeholder="Type a message...">
+                    <div class="chat-actions">
+                        <button id="sendBtn">➤</button>
+                        <button>😊</button>
+                        <button>📷</button>
+                        <button>🖼️</button>
+                        <button>📞</button>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <script src="checkout.js" defer></script>
+</body>
+</html>

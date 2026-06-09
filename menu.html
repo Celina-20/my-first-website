@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Taste of Cantonese</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--navigation-->
+  <nav class="navbar">
+        <div class="logo">
+            <img src="logo.jpg"alt="Logo">
+        </div>
+        <div class="current-page-name">Menu</div>
+        <div class="header-title">
+            <h2>Taste of Cantonese</h2>
+        </div>
+        <button class="mobile-search-btn">🔍</button>
+        <button class="hamburger-btn" onclick="toggleNav()">☰</button>
+        <div class="nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html"class='active'>Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </nav>
+    <!-- Mobile search pop-up window -->
+    <div id="mobileSearchModal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <div class="mobile-search-modal-bar">
+                <span>🔍</span>
+                <input type="text" id="mobileSearchInput" placeholder="Search dishes...">
+            </div>
+        <div class="mobile-suggestion-box" id="mobileSuggestBox"></div>
+        </div>
+    </div>
+  <!--Menu-->
+  <section id="menu" class="menu-page container">
+        <!-- Sidebar Filters -->
+        <div class="sidebar">
+            <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" placeholder="Search" id="searchInput">
+                <button type="submit"></button>
+            </div>
+
+            <div class="price-filter">
+                <label>PRICE</label>
+                <input type="range" min="0" max="60" value="60" class="price-slider">
+                <div class="current-price">Max Price: $<span id="priceValue">60</span></div>
+            </div>
+
+            <div class="category-list">
+                <button class="active" data-category="topsellers">TOP SELLERS 6</button>
+                <button data-category="entree" class="cat-btn">ENTREE <span class="cat-count">0</span></button>
+                <button data-category="soup" class="cat-btn">SOUP <span class="cat-count">0</span></button>
+                <button data-category="seafood" class="cat-btn">SEAFOOD <span class="cat-count">0</span></button>
+                <button data-category="chicken" class="cat-btn">CHICKEN & DUCK <span class="cat-count">0</span></button>
+                <button data-category="meat" class="cat-btn">PORK, BEEF, LAMB <span class="cat-count">0</span></button>
+                <button data-category="vege" class="cat-btn">VEGETABLES & TOFU <span class="cat-count">0</span></button>
+                <button data-category="rice" class="cat-btn">RICE & NOODLE <span class="cat-count">0</span></button>
+                <button data-category="hotpot" class="cat-btn">HOT POT <span class="cat-count">0</span></button>
+                <button data-category="dessert" class="cat-btn">DESSERT <span class="cat-count">0</span></button>
+            </div>
+        </div>
+
+    <!-- Menu bottom bar -->
+    <div class="menu-fixed-bottom-bar">
+        <div class="ai-icon-btn">AI</div>
+        <div class="total-price-text">$0 <span class="cart-toggle-btn">^</span></div>
+            <button class="order-submit-btn" onclick="openCartModal()">Order</button>
+    </div>
+
+    <!--Menu Grid-->
+    <div class="menu-grid">
+    <!--Top Sellers-->
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Special Fried Rice', '$18.00', 'menucard1.jpg', 'Popular', 4.9, '12 reviews')">
+        <img src="menucard1.jpg" alt="Special Fried Rice">
+        <div class="card-content">
+            <h3 class="card-title">Special Fried Rice</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.9</span>
+                    <span>☆</span>
+                    <span>12 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$18.00</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Homemade Dim Sims(3 Pcs)', '$18.00', 'menucard2.jpg', 'Popular', 4.9, '12 reviews')">
+        <img src="menucard2.jpg" alt="Homemade Dim Sims">
+        <div class="card-content">
+            <h3 class="card-title">Homemade Dim Sims(3 Pcs)</h3>
+            <div class="card-tags">
+                <span class="tag">Low Fat</span>
+                <div class="rating">
+                    <span>4.7</span>
+                    <span>☆</span>
+                    <span>16 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$9.80</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Honey or Lemon Chicken', '$31.60', 'menucard3.jpg', 'Popular', 4.9, '8 reviews')">
+        <img src="menucard3.jpg" alt="Honey or Lemon Chicken">
+        <div class="card-content">
+            <h3 class="card-title">Honey or Lemon Chicken</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.9</span>
+                    <span>☆</span>
+                    <span>8 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$31.60</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Vegetarian Spring Rolls(2Pcs)', '$8.70', 'menucard4.jpg', 'Seasonal', 4.6, '15 reviews')">
+        <img src="menucard4.jpg" alt="Vegetarian Spring Rolls">
+        <div class="card-content">
+            <h3 class="card-title">Vegetarian Spring Rolls(2Pcs)</h3>
+            <div class="card-tags">
+                <span class="tag">Seasonal</span>
+                <div class="rating">
+                    <span>4.6</span>
+                    <span>☆</span>
+                    <span>15 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$8.70</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Sizzling Mongolian Beef', '$31.60', 'menucard5.jpg', 'Popular', 4.8, '10 reviews')">
+        <img src="menucard5.jpg" alt="Sizzling Mongolian Beef">
+        <div class="card-content">
+            <h3 class="card-title">Sizzling Mongolian Beef</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.8</span>
+                    <span>☆</span>
+                    <span>10 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$31.60</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="topsellers" onclick="openModal('Singapore Fried Noodle', '$18.50', 'menucard6.jpg', 'Popular', 4.5, '12 reviews')">
+        <img src="menucard6.jpg" alt="Singapore Fried Noodle">
+        <div class="card-content">
+            <h3 class="card-title">Singapore Fried Noodle</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.5</span>
+                    <span>☆</span>
+                    <span>12 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$18.50</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Entree-->
+    <div class="menu-card" data-category="entree" onclick="openModal('Steamed BBQ pork bun (2pcs)', '$12.00', 'menucard13.jpg', 'Popular', 4.5, '10 reviews')">
+        <img src="menucard13.jpg" alt="Steamed BBQ pork bun (2pcs)">
+        <div class="card-content">
+            <h3 class="card-title">Steamed BBQ pork bun (2pcs)</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.5</span>
+                    <span>☆</span>
+                    <span>10 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$12.00</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="entree" onclick="openModal('Deep Fried Quail with Salt & Pepper Chilli', '$12.00', 'menucard14.jpg', 'Spicy', 4.6, '8 reviews')">
+        <img src="menucard14.jpg" alt="Deep Fried Quail with Salt & Pepper Chilli">
+        <div class="card-content">
+            <h3 class="card-title">Deep Fried Quail with Salt & Pepper Chilli</h3>
+            <div class="card-tags">
+                <span class="tag">Spicy</span>
+                <div class="rating">
+                    <span>4.6</span>
+                    <span>☆</span>
+                    <span>8 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$12.00</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="entree" onclick="openModal('Sesame Prawn (2 Pcs)', '$10.90', 'menucard15.jpg', 'Popular', 4.7, '12 reviews')">
+        <img src="menucard15.jpg" alt="Sesame Prawn (2 Pcs)">
+        <div class="card-content">
+            <h3 class="card-title">Sesame Prawn (2 Pcs)</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.7</span>
+                    <span>☆</span>
+                    <span>12 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$10.90</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Soup Items -->
+    <div class="menu-card" data-category="soup" onclick="openModal('Szechuan Hot & Sour Soup', '$9.80', 'menucard7.jpg', 'Low Fat', 4.5, '7 reviews')">
+        <img src="menucard7.jpg" alt="Szechuan Hot & Sour Soup">
+        <div class="card-content">
+            <h3 class="card-title">Szechuan Hot & Sour Soup</h3>
+            <div class="card-tags">
+                <span class="tag">Low Fat</span>
+                <div class="rating">
+                    <span>4.5</span><span>☆</span><span>7 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$9.80</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+    <div class="menu-card" data-category="soup" onclick="openModal('Chicken Sweet Corn Soup', '$8.70', 'menucard8.jpg', 'Low Fat', 4.9, '18 reviews')">
+        <img src="menucard8.jpg" alt="Chicken Sweet Corn Soup">
+        <div class="card-content">
+            <h3 class="card-title">Chicken Sweet Corn Soup</h3>
+            <div class="card-tags">
+                <span class="tag">Low Fat</span>
+                <div class="rating">
+                    <span>4.9</span><span>☆</span><span>18 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$8.70</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+    <div class="menu-card" data-category="soup" onclick="openModal('Chinese Mushroom & Veg Soup', '$8.70', 'menucard9.jpg', 'Seasonal', 4.9, '8 reviews')">
+        <img src="menucard9.jpg" alt="Chinese Mushroom & Veg Soup">
+        <div class="card-content">
+            <h3 class="card-title">Chinese Mushroom & Veg Soup</h3>
+            <div class="card-tags">
+                <span class="tag">Seasonal</span>
+                <div class="rating">
+                    <span>4.9</span><span>☆</span><span>8 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$8.70</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+    <div class="menu-card" data-category="soup" onclick="openModal('Shredded Duck Soup', '$9.80', 'menucard10.jpg', 'Popular', 4.6, '15 reviews')">
+        <img src="menucard10.jpg" alt="Shredded Duck Soup">
+        <div class="card-content">
+            <h3 class="card-title">Shredded Duck Soup</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.6</span><span>☆</span><span>15 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$9.80</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+    <div class="menu-card" data-category="soup" onclick="openModal('Seafood Beancurd Soup', '$10.90', 'menucard11.jpg', 'Popular', 4.8, '8 reviews')">
+        <img src="menucard11.jpg" alt="Seafood Beancurd Soup">
+        <div class="card-content">
+            <h3 class="card-title">Seafood Beancurd Soup</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.8</span><span>☆</span><span>8 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$10.90</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+    <div class="menu-card" data-category="soup" onclick="openModal('Crab Meat & Shark Fin Soup', '$10.90', 'menucard12.jpg', 'Popular', 4.7, '16 reviews')">
+        <img src="menucard12.jpg" alt="Crab Meat & Shark Fin Soup">
+        <div class="card-content">
+            <h3 class="card-title">Crab Meat & Shark Fin Soup</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.7</span><span>☆</span><span>16 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$10.90</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+        <div class="menu-card" data-category="soup" onclick="openModal('Wonton Soup', '$9.80', 'menucard16.jpg', 'Popular', 4.6, '14 reviews')">
+        <img src="menucard16.jpg" alt="Wonton Soup">
+        <div class="card-content">
+            <h3 class="card-title">Wonton Soup</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.6</span>
+                    <span>☆</span>
+                    <span>14 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$9.80</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEAFOOD -->
+    <div class="menu-card" data-category="seafood" onclick="openModal('Poached Sliced Fish Fillets in Hot Chilli Oil', '$38.20', 'menucard17.jpg', 'Spicy', 4.7, '9 reviews')">
+        <img src="menucard17.jpg" alt="Poached Sliced Fish Fillets in Hot Chilli Oil">
+        <div class="card-content">
+            <h3 class="card-title">Poached Sliced Fish Fillets in Hot Chilli Oil</h3>
+            <div class="card-tags">
+                <span class="tag">Spicy</span>
+                <div class="rating">
+                    <span>4.7</span>
+                    <span>☆</span>
+                    <span>9 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$38.20</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="seafood" onclick="openModal('Sliced Fish Fillets with Pickled Cabbage in Soup', '$38.20', 'menucard18.jpg', 'Popular', 4.6, '11 reviews')">
+        <img src="menucard18.jpg" alt="Sliced Fish Fillets with Pickled Cabbage in Soup">
+        <div class="card-content">
+            <h3 class="card-title">Sliced Fish Fillets with Pickled Cabbage in Soup</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.6</span>
+                    <span>☆</span>
+                    <span>11 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$38.20</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHICKEN & DUCK -->
+    <div class="menu-card" data-category="chicken" onclick="openModal('Peking Duck', '$54.50', 'menucard19.jpg', 'Premium', 4.9, '22 reviews')">
+        <img src="menucard19.jpg" alt="Peking Duck">
+        <div class="card-content">
+            <h3 class="card-title">Peking Duck</h3>
+            <div class="card-tags">
+                <span class="tag">Premium</span>
+                <div class="rating">
+                    <span>4.9</span>
+                    <span>☆</span>
+                    <span>22 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$54.50</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="chicken" onclick="openModal('BBQ Roasted Duck', '$30.50', 'menucard20.jpg', 'Popular', 4.8, '18 reviews')">
+        <img src="menucard20.jpg" alt="BBQ Roasted Duck">
+        <div class="card-content">
+            <h3 class="card-title">BBQ Roasted Duck</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.8</span>
+                    <span>☆</span>
+                    <span>18 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$30.50</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PORK, BEEF, LAMB -->
+    <div class="menu-card" data-category="meat" onclick="openModal('Black Pepper Shredded Steak', '$33.80', 'menucard21.jpg', 'Popular', 4.7, '13 reviews')">
+        <img src="menucard21.jpg" alt="Black Pepper Shredded Steak">
+        <div class="card-content">
+            <h3 class="card-title">Black Pepper Shredded Steak</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.7</span>
+                    <span>☆</span>
+                    <span>13 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$33.80</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="meat" onclick="openModal('Fried Beef in Black Bean Sauce', '$31.60', 'menucard22.jpg', 'Popular', 4.6, '15 reviews')">
+        <img src="menucard22.jpg" alt="Fried Beef in Black Bean Sauce">
+        <div class="card-content">
+            <h3 class="card-title">Fried Beef in Black Bean Sauce</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.6</span>
+                    <span>☆</span>
+                    <span>15 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$31.60</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VEGETABLES & TOFU -->
+    <div class="menu-card" data-category="vege" onclick="openModal('Stir Fried Mixed Vegetables', '$27.30', 'menucard23.jpg', 'Vegetarian', 4.8, '12 reviews')">
+        <img src="menucard23.jpg" alt="Stir Fried Mixed Vegetables">
+        <div class="card-content">
+            <h3 class="card-title">Stir Fried Mixed Vegetables</h3>
+            <div class="card-tags">
+                <span class="tag">Vegetarian</span>
+                <div class="rating">
+                    <span>4.8</span>
+                    <span>☆</span>
+                    <span>12 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$27.30</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="vege" onclick="openModal('Fried Chinese Broccoli with Garlic/Oyster Sauce', '$31.60', 'menucard24.jpg', 'Vegetarian', 4.9, '16 reviews')">
+        <img src="menucard24.jpg" alt="Fried Chinese Broccoli with Garlic/Oyster Sauce">
+        <div class="card-content">
+            <h3 class="card-title">Fried Chinese Broccoli with Garlic/Oyster Sauce</h3>
+            <div class="card-tags">
+                <span class="tag">Vegetarian</span>
+                <div class="rating">
+                    <span>4.9</span>
+                    <span>☆</span>
+                    <span>16 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$31.60</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RICE & NOODLE -->
+    <div class="menu-card" data-category="rice" onclick="openModal('Mince Beef Rice', '$18.00', 'menucard25.jpg', 'Popular', 4.6, '10 reviews')">
+        <img src="menucard25.jpg" alt="Mince Beef Rice">
+        <div class="card-content">
+            <h3 class="card-title">Mince Beef Rice</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.6</span>
+                    <span>☆</span>
+                    <span>10 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$18.00</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="rice" onclick="openModal('Vegetarian Rice', '$16.90', 'menucard26.jpg', 'Vegetarian', 4.7, '14 reviews')">
+        <img src="menucard26.jpg" alt="Vegetarian Rice">
+        <div class="card-content">
+            <h3 class="card-title">Vegetarian Rice</h3>
+            <div class="card-tags">
+                <span class="tag">Vegetarian</span>
+                <div class="rating">
+                    <span>4.7</span>
+                    <span>☆</span>
+                    <span>14 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$16.90</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOT POT -->
+    <div class="menu-card" data-category="hotpot" onclick="openModal('Beef Briskets & Cowhells Hot Pot', '$31.60', 'menucard27.jpg', 'Popular', 4.8, '9 reviews')">
+        <img src="menucard27.jpg" alt="Beef Briskets & Cowhells Hot Pot">
+        <div class="card-content">
+            <h3 class="card-title">Beef Briskets & Cowhells Hot Pot</h3>
+            <div class="card-tags">
+                <span class="tag">Popular</span>
+                <div class="rating">
+                    <span>4.8</span>
+                    <span>☆</span>
+                    <span>9 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$31.60</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="hotpot" onclick="openModal('Satay Beef & Vermicelli Hot Pot', '$31.60', 'menucard28.jpg', 'Spicy', 4.7, '11 reviews')">
+        <img src="menucard28.jpg" alt="Satay Beef & Vermicelli Hot Pot">
+        <div class="card-content">
+            <h3 class="card-title">Satay Beef & Vermicelli Hot Pot</h3>
+            <div class="card-tags">
+                <span class="tag">Spicy</span>
+                <div class="rating">
+                    <span>4.7</span>
+                    <span>☆</span>
+                    <span>11 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$31.60</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DESSERT -->
+    <div class="menu-card" data-category="dessert" onclick="openModal('Banana Fritter with Ice Cream', '$10.90', 'menucard29.jpg', 'Dessert', 4.9, '21 reviews')">
+        <img src="menucard29.jpg" alt="Banana Fritter with Ice Cream">
+        <div class="card-content">
+            <h3 class="card-title">Banana Fritter with Ice Cream</h3>
+            <div class="card-tags">
+                <span class="tag">Dessert</span>
+                <div class="rating">
+                    <span>4.9</span>
+                    <span>☆</span>
+                    <span>21 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$10.90</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-card" data-category="dessert" onclick="openModal('Pineapple Fritter with Ice Cream', '$10.90', 'menucard30.jpg', 'Dessert', 4.8, '18 reviews')">
+        <img src="menucard30.jpg" alt="Pineapple Fritter with Ice Cream">
+        <div class="card-content">
+            <h3 class="card-title">Pineapple Fritter with Ice Cream</h3>
+            <div class="card-tags">
+                <span class="tag">Dessert</span>
+                <div class="rating">
+                    <span>4.8</span>
+                    <span>☆</span>
+                    <span>18 reviews</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="price">$10.90</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+   <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <!-- AI Assistance -->
+            <div class="sidebar-box">
+                <h3>AI Assistance</h3>
+                <div class="ai-search">
+                    <input type="text" placeholder="Tell the AI your requirements" id="aiInput">
+                    <button id="aiSearchBtn">🔍</button>
+                </div>
+
+                <div class="ai-guide-text">
+                    Recommended:<br>
+                    I'm on a fat loss diet. Could you recommend some low-fat foods to me and help me combine them well?<br><br>
+                    What are some seasonal and healthy foods available now?<br><br>
+                    My family of three has a budget of $100, I want to have light steamed dishes. Could you pair them?
+                </div>
+
+                <div class="ai-recommendations" id="aiResult" style="display: none;">
+                    <p class="text-sm text-gray-600 mb-3">Recommended:</p >
+                    <div id="aiRenderList"></div>
+                    <button id="aiResetBtn" class="ai-reset-btn">← Back to Menu</button>
+                </div>
+                            
+                <div class="package-item" data-name="Single-person Package" data-price="$28.80" data-img="single-person package.jpg">
+                    <img src="single-person package.jpg" alt="Single-person Package">
+                    <div class="package-details">
+                        <p class="package-title">Single-person Package</p>
+                        <p class="package-desc">Signature fresh shrimp wonton noodles<br>Blanched garlic and Chinese kale<br>Freshly brewed fragrant oolong</p>
+                        <p class="package-price">$28.80</p>
+                    </div>
+                    <button class="add-btn">+</button>
+                </div>
+            </div>
+
+  <!-- Shopping Cart -->
+            <div class="sidebar-box">
+                <h3>Shopping Cart</h3>
+                <div class="cart-header">
+                    <button class="cart-tab active">Delivery</button>
+                    <button class="cart-tab">Pick Up</button>
+                </div>
+                <div class="cart-items" id="cartItems"></div>
+                <div class="cart-total">
+                    <span class="total-label">Order Total:</span>
+                    <span class="total-amount">$0</span>
+                </div>
+                <button class="order-btn" id="orderBtn">Order</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Modal -->
+    <div id="foodModal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+        <!-- Top Sellers -->
+            <!-- Special Fried Rice -->
+            <div class="dish-panel" data-dish="Special Fried Rice">
+            <h3 class="modal-title">Special Fried Rice $18.00</h3>
+            <div class="modal-body">
+                <img src="menucard1.jpg" alt="Special Fried Rice" class="modal-image">
+                <div class="modal-description">
+                    <p>The signature mixed shrimp fried rice features distinct grains of rice paired with fresh and springy shrimp, diced luncheon meat, and eggs. It is complemented by green beans and corn to enhance the freshness and crispness. The dish is rich in wok aroma, salty, fragrant, and sweet, satisfying with just one bite.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">No Spicy</button>
+                    <button class="pref-btn">Slightly Spicy</button>
+                    <button class="pref-btn">Extremely Spicy</button>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Homemade Dim Sims -->
+            <div class="dish-panel" data-dish="Homemade Dim Sims(3 Pcs)">
+            <h3 class="modal-title">Homemade Dim Sims(3 Pcs) $9.80</h3>
+            <div class="modal-body">
+                <img src="menucard2.jpg" alt="Homemade Dim Sims" class="modal-image">
+                <div class="modal-description">
+                    <p>Steamed pork and vegetable dumplings, hand-wrapped daily, served with our signature soy-vinegar dipping sauce.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Steamed</button>
+                    <button class="pref-btn">Pan Fried</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Honey or Lemon Chicken -->
+            <div class="dish-panel" data-dish="Honey or Lemon Chicken">
+            <h3 class="modal-title">Honey or Lemon Chicken $31.60</h3>
+            <div class="modal-body">
+                <img src="menucard3.jpg" alt="Honey or Lemon Chicken" class="modal-image">
+                <div class="modal-description">
+                    <p>Crispy battered chicken pieces tossed in either sweet honey glaze or tangy lemon sauce, served with steamed rice.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Honey Flavour</button>
+                    <button class="pref-btn">Lemon Flavour</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Vegetarian Spring Rolls -->
+            <div class="dish-panel" data-dish="Vegetarian Spring Rolls(2Pcs)">
+            <h3 class="modal-title">Vegetarian Spring Rolls(2Pcs) $8.70</h3>
+            <div class="modal-body">
+                <img src="menucard4.jpg" alt="Vegetarian Spring Rolls" class="modal-image">
+                <div class="modal-description">
+                    <p>Crispy vegetable rolls filled with cabbage, carrots, and glass noodles, served with sweet chilli sauce.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">No Extra Sauce</button>
+                    <button class="pref-btn">Extra Sweet Chilli</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Sizzling Mongolian Beef -->
+            <div class="dish-panel" data-dish="Sizzling Mongolian Beef">
+            <h3 class="modal-title">Sizzling Mongolian Beef $31.60</h3>
+            <div class="modal-body">
+                <img src="menucard5.jpg" alt="Sizzling Mongolian Beef" class="modal-image">
+                <div class="modal-description">
+                    <p>Tender slices of beef stir-fried with scallions and onions in a sweet soy sauce, served sizzling hot on a cast iron plate.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Spicy</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Singapore Fried Noodle -->
+            <div class="dish-panel" data-dish="Singapore Fried Noodle">
+            <h3 class="modal-title">Singapore Fried Noodle $18.50</h3>
+            <div class="modal-body">
+                <img src="menucard6.jpg" alt="Singapore Fried Noodle" class="modal-image">
+                <div class="modal-description">
+                    <p>Rice vermicelli stir-fried with curry powder, prawns, char siu pork, eggs, and bean sprouts.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">No Spicy</button>
+                    <button class="pref-btn">Slightly Spicy</button>
+                    <button class="pref-btn">Extra Spicy</button>
+                </div>
+            </div>
+            </div>
+
+        <!-- Entree -->
+            <!-- Steamed BBQ pork bun -->
+            <div class="dish-panel" data-dish="Steamed BBQ pork bun (2pcs)">
+            <h3 class="modal-title">Steamed BBQ pork bun (2pcs) $12.00</h3>
+            <div class="modal-body">
+                <img src="menucard13.jpg" alt="Steamed BBQ pork bun" class="modal-image">
+                <div class="modal-description">
+                    <p>Soft, fluffy buns filled with sweet and savoury barbecued pork, a classic Cantonese dim sum favourite.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Standard</button>
+                    <button class="pref-btn">Extra Sauce</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Deep Fried Quail with Salt & Pepper Chilli -->
+            <div class="dish-panel" data-dish="Deep Fried Quail with Salt & Pepper Chilli">
+            <h3 class="modal-title">Deep Fried Quail with Salt & Pepper Chilli $12.00</h3>
+            <div class="modal-body">
+                <img src="menucard14.jpg" alt="Deep Fried Quail" class="modal-image">
+                <div class="modal-description">
+                    <p>Crispy fried quail seasoned with salt, pepper, and chilli, served with a side of lemon wedges.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Spicy</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Sesame Prawn -->
+            <div class="dish-panel" data-dish="Sesame Prawn (2 Pcs)">
+            <h3 class="modal-title">Sesame Prawn (2 Pcs) $10.90</h3>
+            <div class="modal-body">
+                <img src="menucard15.jpg" alt="Sesame Prawn" class="modal-image">
+                <div class="modal-description">
+                    <p>Succulent prawns coated in a light batter, rolled in sesame seeds, and deep-fried to golden perfection.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">No Extra Sauce</button>
+                    <button class="pref-btn">Extra Sweet Chilli</button>
+                </div>
+            </div>
+            </div>
+
+        <!-- Soup -->
+            <!-- Szechuan Hot & Sour Soup -->
+            <div class="dish-panel" data-dish="Szechuan Hot & Sour Soup">
+            <h3 class="modal-title">Szechuan Hot & Sour Soup $9.80</h3>
+            <div class="modal-body">
+                <img src="menucard7.jpg" alt="Szechuan Hot & Sour Soup" class="modal-image">
+                <div class="modal-description">
+                    <p>A classic spicy and sour soup with tofu, mushrooms, bamboo shoots, and eggs, flavoured with black vinegar and white pepper.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Spicy</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Chicken Sweet Corn Soup -->
+            <div class="dish-panel" data-dish="Chicken Sweet Corn Soup">
+            <h3 class="modal-title">Chicken Sweet Corn Soup $8.70</h3>
+            <div class="modal-body">
+                <img src="menucard8.jpg" alt="Chicken Sweet Corn Soup" class="modal-image">
+                <div class="modal-description">
+                    <p>A smooth and creamy soup made with shredded chicken, sweet corn, and egg, lightly seasoned with salt.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">No Coriander</button>
+                    <button class="pref-btn">With Coriander</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Chinese Mushroom & Veg Soup -->
+            <div class="dish-panel" data-dish="Chinese Mushroom & Veg Soup">
+            <h3 class="modal-title">Chinese Mushroom & Veg Soup $8.70</h3>
+            <div class="modal-body">
+                <img src="menucard9.jpg" alt="Chinese Mushroom & Veg Soup" class="modal-image">
+                <div class="modal-description">
+                    <p>Light and nourishing Cantonese slow-boiled soup, made with premium shiitake mushrooms and fresh seasonal vegetables. Low fat, oil free, naturally umami, perfect for a light and healthy vegetarian choice.</p >
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Soup Base</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Light Broth</button>
+                    <button class="pref-btn">Rich Broth</button>
+                    <button class="pref-btn">Extra Herbal</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Shredded Duck Soup -->
+            <div class="dish-panel" data-dish="Shredded Duck Soup">
+            <h3 class="modal-title">Shredded Duck Soup $9.80</h3>
+            <div class="modal-body">
+                <img src="menucard10.jpg" alt="Shredded Duck Soup" class="modal-image">
+                <div class="modal-description">
+                    <p>Traditional slow-cooked Cantonese soup with tender shredded duck meat. Simmered for hours to bring a rich, mild, and nourishing flavour, light on the stomach and perfect for all ages.</p >
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Soup Base</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Clear Broth</button>
+                    <button class="pref-btn">Rich Broth</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Seafood Beancurd Soup -->
+            <div class="dish-panel" data-dish="Seafood Beancurd Soup">
+            <h3 class="modal-title">Seafood Beancurd Soup $10.90</h3>
+            <div class="modal-body">
+                <img src="menucard11.jpg" alt="Seafood Beancurd Soup" class="modal-image">
+                <div class="modal-description">
+                    <p>A creamy soup with silken tofu, prawns, scallops, and fish fillets in a light chicken broth.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Tofu</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Crab Meat & Shark Fin Soup -->
+            <div class="dish-panel" data-dish="Crab Meat & Shark Fin Soup">
+            <h3 class="modal-title">Crab Meat & Shark Fin Soup $10.90</h3>
+            <div class="modal-body">
+                <img src="menucard12.jpg" alt="Crab Meat & Shark Fin Soup" class="modal-image">
+                <div class="modal-description">
+                    <p>A classic Cantonese soup with tender crab meat and imitation shark fin in a rich, savoury broth.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">With Vinegar</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Wonton Soup -->
+            <div class="dish-panel" data-dish="Wonton Soup">
+            <h3 class="modal-title">Wonton Soup $9.80</h3>
+            <div class="modal-body">
+                <img src="menucard16.jpg" alt="Wonton Soup" class="modal-image">
+                <div class="modal-description">
+                    <p>Handmade pork and prawn wontons served in a clear, aromatic chicken broth with spring onions.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Wontons</button>
+                </div>
+            </div>
+            </div>
+
+        <!-- Seafood -->
+            <!-- Poached Sliced Fish Fillets in Hot Chilli Oil -->
+            <div class="dish-panel" data-dish="Poached Sliced Fish Fillets in Hot Chilli Oil">
+            <h3 class="modal-title">Poached Sliced Fish Fillets in Hot Chilli Oil $38.20</h3>
+            <div class="modal-body">
+                <img src="menucard17.jpg" alt="Poached Sliced Fish Fillets" class="modal-image">
+                <div class="modal-description">
+                    <p>Tender fish fillets poached in a fragrant, numbing Sichuan chilli oil broth, topped with fresh herbs.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Medium Spicy</button>
+                    <button class="pref-btn">Extra Spicy</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Sliced Fish Fillets with Pickled Cabbage in Soup -->
+            <div class="dish-panel" data-dish="Sliced Fish Fillets with Pickled Cabbage in Soup">
+            <h3 class="modal-title">Sliced Fish Fillets with Pickled Cabbage in Soup $38.20</h3>
+            <div class="modal-body">
+                <img src="menucard18.jpg" alt="Sliced Fish Fillets with Pickled Cabbage" class="modal-image">
+                <div class="modal-description">
+                    <p>A tangy and comforting soup with tender fish fillets and fermented pickled cabbage, a Sichuan classic.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Sour</button>
+                </div>
+            </div>
+            </div>
+
+        <!-- Chicken & Duck -->
+            <!-- Peking Duck -->
+            <div class="dish-panel" data-dish="Peking Duck">
+            <h3 class="modal-title">Peking Duck $54.50</h3>
+            <div class="modal-body">
+                <img src="menucard19.jpg" alt="Peking Duck" class="modal-image">
+                <div class="modal-description">
+                    <p>Crispy skin roasted duck served with thin pancakes, scallions, cucumber, and hoisin sauce for you to wrap yourself.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Standard</button>
+                    <button class="pref-btn">Extra Pancakes</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- BBQ Roasted Duck -->
+            <div class="dish-panel" data-dish="BBQ Roasted Duck">
+            <h3 class="modal-title">BBQ Roasted Duck $30.50</h3>
+            <div class="modal-body">
+                <img src="menucard20.jpg" alt="BBQ Roasted Duck" class="modal-image">
+                <div class="modal-description">
+                    <p>Classic authentic Cantonese roasted duck. Glossy crispy skin with tender juicy meat inside, marinated with our exclusive house recipe. Traditional Cantonese roast signature flavour, a restaurant favourite.</p >
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Crispy Level</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Standard</button>
+                    <button class="pref-btn">Extra Crispy</button>
+                </div>
+            </div>
+            </div>
+        
+        <!-- Pock, Beff, Lamb-->
+            <!-- Black Pepper Shredded Steak -->
+            <div class="dish-panel" data-dish="Black Pepper Shredded Steak">
+            <h3 class="modal-title">Black Pepper Shredded Steak $33.80</h3>
+            <div class="modal-body">
+                <img src="menucard21.jpg" alt="Black Pepper Shredded Steak" class="modal-image">
+                <div class="modal-description">
+                    <p>Tender strips of beef stir-fried with onions and capsicum in a rich black pepper sauce, served with rice.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Pepper</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Fried Beef in Black Bean Sauce -->
+            <div class="dish-panel" data-dish="Fried Beef in Black Bean Sauce">
+            <h3 class="modal-title">Fried Beef in Black Bean Sauce $31.60</h3>
+            <div class="modal-body">
+                <img src="menucard22.jpg" alt="Fried Beef in Black Bean Sauce" class="modal-image">
+                <div class="modal-description">
+                    <p>Classic Cantonese stir-fry with tender beef, capsicum, and onions in a savoury fermented black bean sauce.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Sauce</button>
+                </div>
+            </div>
+            </div>
+
+        <!-- Vegetables & Tofu -->
+            <!-- Stir Fried Mixed Vegetables -->
+            <div class="dish-panel" data-dish="Stir Fried Mixed Vegetables">
+            <h3 class="modal-title">Stir Fried Mixed Vegetables $27.30</h3>
+            <div class="modal-body">
+                <img src="menucard23.jpg" alt="Stir Fried Mixed Vegetables" class="modal-image">
+                <div class="modal-description">
+                    <p>A colourful medley of seasonal vegetables stir-fried in a light garlic sauce.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Vegetarian</button>
+                    <button class="pref-btn">Add Garlic</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Fried Chinese Broccoli with Garlic/Oyster Sauce -->
+            <div class="dish-panel" data-dish="Fried Chinese Broccoli with Garlic/Oyster Sauce">
+            <h3 class="modal-title">Fried Chinese Broccoli with Garlic/Oyster Sauce $31.60</h3>
+            <div class="modal-body">
+                <img src="menucard24.jpg" alt="Fried Chinese Broccoli" class="modal-image">
+                <div class="modal-description">
+                    <p>Crisp-tender Chinese broccoli stir-fried with garlic, available in a light vegetarian sauce or rich oyster sauce.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Garlic Sauce</button>
+                    <button class="pref-btn">Oyster Sauce</button>
+                </div>
+            </div>
+            </div>
+
+        <!-- Rice & Noodle-->
+            <!-- Mince Beef Rice -->
+            <div class="dish-panel" data-dish="Mince Beef Rice">
+            <h3 class="modal-title">Mince Beef Rice $18.00</h3>
+            <div class="modal-body">
+                <img src="menucard25.jpg" alt="Mince Beef Rice" class="modal-image">
+                <div class="modal-description">
+                    <p>Slow-braised beef mince in a sweet soy sauce, served over a bed of steamed rice.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Sauce</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Vegetarian Rice -->
+            <div class="dish-panel" data-dish="Vegetarian Rice">
+            <h3 class="modal-title">Vegetarian Rice $16.90</h3>
+            <div class="modal-body">
+                <img src="menucard26.jpg" alt="Vegetarian Rice" class="modal-image">
+                <div class="modal-description">
+                    <p>Fried rice with mixed seasonal vegetables, tofu, and eggs in a light soy sauce.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Vegetarian</button>
+                    <button class="pref-btn">Add Egg</button>
+                </div>
+            </div>
+            </div>
+
+        <!-- Hot Pot -->
+            <!-- Beef Briskets & Cowhells Hot Pot -->
+            <div class="dish-panel" data-dish="Beef Briskets & Cowhells Hot Pot">
+            <h3 class="modal-title">Beef Briskets & Cowhells Hot Pot $31.60</h3>
+            <div class="modal-body">
+                <img src="menucard27.jpg" alt="Beef Briskets & Cowhells Hot Pot" class="modal-image">
+                <div class="modal-description">
+                    <p>A hearty hot pot with slow-cooked beef brisket and chewy cowhells in a rich beef broth.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Spicy</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Satay Beef & Vermicelli Hot Pot -->
+            <div class="dish-panel" data-dish="Satay Beef & Vermicelli Hot Pot">
+            <h3 class="modal-title">Satay Beef & Vermicelli Hot Pot $31.60</h3>
+            <div class="modal-body">
+                <img src="menucard28.jpg" alt="Satay Beef & Vermicelli Hot Pot" class="modal-image">
+                <div class="modal-description">
+                    <p>A fragrant hot pot with tender beef slices and vermicelli noodles in a creamy peanut satay broth.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Regular</button>
+                    <button class="pref-btn">Extra Spicy</button>
+                </div>
+            </div>
+            </div>
+
+        <!-- Dessert -->
+            <!-- Banana Fritter with Ice Cream -->
+            <div class="dish-panel" data-dish="Banana Fritter with Ice Cream">
+            <h3 class="modal-title">Banana Fritter with Ice Cream $10.90</h3>
+            <div class="modal-body">
+                <img src="menucard29.jpg" alt="Banana Fritter with Ice Cream" class="modal-image">
+                <div class="modal-description">
+                    <p>Warm, crispy banana fritter served with a scoop of vanilla ice cream and drizzled with honey.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Vanilla Ice Cream</button>
+                     <button class="pref-btn">No Ice Cream</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Pineapple Fritter with Ice Cream -->
+            <div class="dish-panel" data-dish="Pineapple Fritter with Ice Cream">
+            <h3 class="modal-title">Pineapple Fritter with Ice Cream $10.90</h3>
+            <div class="modal-body">
+                <img src="menucard30.jpg" alt="Pineapple Fritter with Ice Cream" class="modal-image">
+                <div class="modal-description">
+                    <p>Sweet and tangy pineapple fritter served with a scoop of vanilla ice cream and a drizzle of caramel sauce.</p>
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preferences</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Vanilla Ice Cream</button>
+                    <button class="pref-btn">No Ice Cream</button>
+                </div>
+            </div>
+            </div>
+        
+        <!-- Ai assistance part -->
+            <!-- Single-person Package -->
+            <div class="dish-panel" data-dish="Single-person Package">
+            <h3 class="modal-title">Single-person Package $28.80</h3>
+            <div class="modal-body">
+                <img src="single-person package.jpg" alt="Single-person Package" class="modal-image">
+                <div class="modal-description">
+                    <p>This authentic Cantonese single-person set includes signature handmade shrimp wonton egg noodles in light clear broth, paired with fresh blanched Choy Sum tossed with premium oyster sauce, plus a side of freshly brewed warm oolong tea. A perfectly balanced, comforting classic Cantonese meal, ideal for one diner.</p >
+                </div>
+            </div>
+            <div class="preferences">
+                <h4>Preference</h4>
+                <div class="preference-options">
+                    <button class="pref-btn active">Standard Taste</button>
+                    <button class="pref-btn">Less Salt & Oil</button>
+                    <button class="pref-btn">Original Light Flavor</button>
+                </div>
+            </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="qty-control">
+                    <button class="qty-btn">-</button>
+                    <span class="qty-num">1</span>
+                    <button class="qty-btn">+</button>
+                </div>
+                <button class="modal-add-btn">Add</button>
+            </div>
+        </div>
+    </div>
+
+<!-- Payment Modal -->
+    <div id="paymentModal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <h3 class="modal-title">Payment Methods</h3>
+            <p id="countdownText" class="payment-countdown"></p >
+            <p class="mb-4">Please select a payment method</p>
+            <div class="payment-options">
+                <button class="payment-option">Credit Card</button>
+                <button class="payment-option">ApplePay</button>
+                <button class="payment-option">Alipay</button>
+            </div>
+            <button class="confirm-btn">Confirm</button>
+        </div>
+    </div>
+
+    <!-- Address Detail Modal -->
+    <div id="addressModal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <h3 class="modal-title">Delivery Information</h3>
+            <div class="payment-form">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Your name" value="Celina">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="04xxxxxxxx" value="0421451846">
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <input id="deliveryAddress" type="text" placeholder="Street, Suburb, State, Postcode" value="85 Barry Street, Carlton, VIC 3053">
+                </div>
+            </div>
+            <button class="confirm-btn" id="goToPayBtn">Next</button>
+            </div>
+        </div>
+
+    <!-- Payment Detail Modal -->
+    <div id="paymentDetailModal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <h3 class="modal-title">Payment Details</h3>
+            <div class="payment-form">
+                <div class="form-group">
+                    <label>Credit Card Number</label>
+                    <input type="text" placeholder="xxxx xxxx xxxx xxxx" value="4521 5789 1456 1234">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="text" placeholder="xxx" value="541">
+                    </div>
+                    <div class="form-group">
+                        <label>Expiry</label>
+                        <input type="text" placeholder="MM/YY" value="12/28">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="confirm-btn" id="payNowBtn">Pay Now</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal success-modal">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                </svg>
+            </div>
+            <h3 class="success-title">Payment Success!</h3>
+            <p class="success-message">Thank you for your purchase.<br>Your order has been confirmed.</p>
+            <button class="back-btn">Back Homepage</button>
+        </div>
+    </div>
+    <script src="checkout.js" defer></script>
+</body>
+</html>
